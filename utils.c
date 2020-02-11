@@ -62,22 +62,28 @@ int		**dop_2d(int **arr1, int **arr2)
 	int k;
 	int max_1;
 	int max_2;
+	int max_3;
 	int *size;
 	int **arr;
 	int tmp;
 	int n;
 
 	size = shape_2d(arr1);
-	max_1 = size[0];
 	max_2 = size[1];
+	max_3 = size[0];
 	free(size);
-	arr = create_2d(max_1, max_2);
+
+	size = shape_2d(arr2);
+	max_1 = size[0];
+	free(size);
+	
+	arr = create_2d(max_2, max_1);
 
 	i = 0;
-	while (i < max_2)
+	while (i < max_3)
 	{
 		k = 0;
-		while (k < max_2)
+		while (k < max_1)
 		{
 			n = 0;
 			tmp = 0;
@@ -86,10 +92,12 @@ int		**dop_2d(int **arr1, int **arr2)
 				tmp += arr1[i][n] * arr2[n][k];
 				n++;
 			}
-			arr[i][k] = tmp;
+			arr[i][k++] = tmp;
 		}
-		k++;
+		i++;
 	}
+	clean_2d(arr1);
+	clean_2d(arr2);
 	return (arr);
 }
 
@@ -122,7 +130,7 @@ int		**arr_t(int **arr)
 	return (new);	
 }
 
-int		**sum_2d(int **arr1, int **arr2)
+int		**sum_2d((void) **arr1, (void) **arr2)
 {
 	int i;
 	int k;
@@ -138,7 +146,7 @@ int		**sum_2d(int **arr1, int **arr2)
 	return (arr1);
 }
 
-int		**sub_2d(int **arr1, int **arr2)
+int		**sub_2d((void) **arr1, (void) **arr2)
 {
 	int i;
 	int k;
@@ -154,7 +162,7 @@ int		**sub_2d(int **arr1, int **arr2)
 	return (arr1);
 }
 
-int		**mul_2d(int **arr1, int **arr2)
+int		**mul_2d((void) **arr1, (void) **arr2)
 {
 	int i;
 	int k;
