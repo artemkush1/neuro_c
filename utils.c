@@ -85,13 +85,10 @@ int		**dop_2d(int **arr1, int **arr2)
 		k = 0;
 		while (k < max_1)
 		{
-			n = 0;
+			n = -1;
 			tmp = 0;
-			while (n < max_2)
-			{
+			while (++n < max_2)
 				tmp += arr1[i][n] * arr2[n][k];
-				n++;
-			}
 			arr[i][k++] = tmp;
 		}
 		i++;
@@ -193,7 +190,3 @@ int		**sub_2d((void) **arr1, (void) **arr2)
 	clean_2d(arr2);
 	return (arr1);
 }
-
-
-
-
