@@ -1,6 +1,6 @@
 import <stdlib.h>
 
-void	clean_2d((void) **arr)
+void	clean_2d(float **arr)
 {
 	int i;
 
@@ -10,12 +10,12 @@ void	clean_2d((void) **arr)
 	free(arr);
 }
 
-int		*shape_2d((void) **arr)
+int		*shape_2d(float **arr)
 {
-	int i;
-	int	*new;
+	int 	i;
+	float	*new;
 
-	if (!(new = malloc(sizeof(int) * 3)))
+	if (!(new = malloc(sizeof(float) * 3)))
 		exit(1);
 	i = 0;
 	while (i < 3)
@@ -34,19 +34,19 @@ int		*shape_2d((void) **arr)
 	return (new);
 }
 
-int		**create_2d(int x1, int x2)
+float		**create_2d(int x1, int x2)
 {
-	int i;
-	int	k;
-	int **arr;
+	int		i;
+	int		k;
+	float	**arr;
 
-	if (!(arr = malloc(sizeof(int*) * (x1 + 1))))
+	if (!(arr = malloc(sizeof(float *) * (x1 + 1))))
 		exit(1);
 	arr[x1] = NULL;
 	i = 0;
 	while (i < x2)
 	{
-		if (!(arr[i] = malloc(sizeof(int) * (x2 + 1))))
+		if (!(arr[i] = malloc(sizeof(float) * (x2 + 1))))
 			exit(1);
 		k = 0;
 		while (k < x2 + 1)
@@ -56,17 +56,17 @@ int		**create_2d(int x1, int x2)
 	return (arr);
 }
 
-int		**dop_2d(int **arr1, int **arr2)
+float		**dop_2d(float **arr1, float **arr2)
 {
-	int i;
-	int k;
-	int max_1;
-	int max_2;
-	int max_3;
-	int *size;
-	int **arr;
-	int tmp;
-	int n;
+	int		i;
+	int		k;
+	int		max_1;
+	int		max_2;
+	int		max_3;
+	int		*size;
+	float	**arr;
+	int		tmp;
+	int		n;
 
 	size = shape_2d(arr1);
 	max_2 = size[1];
@@ -98,36 +98,28 @@ int		**dop_2d(int **arr1, int **arr2)
 	return (arr);
 }
 
-int		**arr_t(int **arr)
+float		**arr_t(float **arr)
 {
-	int **new;
-	int *size;
-	int max_1;
-	int max_2;
-	int i;
-	int k;
+	float	**new;
+	int		*size;
+	int		i;
+	int		k;
 
 	size = shape_2d(arr1);
-	max_1 = size[0];
-	max_2 = size[1];
-	free(size);
-	new = create_2d(max_2, max_1);
-	i = 0;
-	while (i < max_1)
+	new = create_2d(size[1], size[0]);
+	i = -1;
+	while (++i < size[0])
 	{
-		k = 0;
-		while (k < max_2)
-		{
+		k = -1;
+		while (++k < size[1])
 			new[k][i] = arr[i][k];
-			k++;
-		}
-		i++;
 	}
+	free(size);
 	clean_2d(arr);
 	return (new);	
 }
 
-int		**sum_2d((void) **arr1, (void) **arr2)
+float		**sum_2d(float **arr1, float **arr2)
 {
 	int i;
 	int k;
@@ -143,7 +135,7 @@ int		**sum_2d((void) **arr1, (void) **arr2)
 	return (arr1);
 }
 
-int		**sub_2d((void) **arr1, (void) **arr2)
+float		**sub_2d(float **arr1, float **arr2)
 {
 	int i;
 	int k;
@@ -159,7 +151,7 @@ int		**sub_2d((void) **arr1, (void) **arr2)
 	return (arr1);
 }
 
-int		**mul_2d((void) **arr1, (void) **arr2)
+float		**mul_2d(float **arr1, float **arr2)
 {
 	int i;
 	int k;
@@ -175,7 +167,7 @@ int		**mul_2d((void) **arr1, (void) **arr2)
 	return (arr1);
 }
 
-int		**sub_2d((void) **arr1, (void) **arr2)
+float		**sub_2d(float **arr1, float **arr2)
 {
 	int i;
 	int k;
